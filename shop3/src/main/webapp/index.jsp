@@ -20,7 +20,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body><!-- 고객인지 스텝인지 구분을 해야하는데 -->
+<body><!-- 고객, 관리자 구분 -->
 	<%=session.getAttribute("user") %> 
 	<br>
 	<%=session.getAttribute("id") %> 

@@ -139,9 +139,7 @@ public class OrdersDao {
 				
 		
 			list.add(map);
-			System.out.print(map + " : map");		
 			
-			System.out.println(list + "list");
 		}
 		
 			

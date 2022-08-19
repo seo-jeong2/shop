@@ -12,7 +12,7 @@ import vo.Goods;
 
 public class GoodsDao {
 	
-	 // 고객 상품리스트 페이지에서 사용 >>> 쿠팡같은 상품 상세보기
+	//고객 상품리스트 상세보기
     public List<Map<String, Object>> selectcustomerGoodsListByPage(Connection conn, int rowPerPage, int beginRow) throws SQLException {
        List<Map<String, Object>> list= new ArrayList<Map<String,Object>>();
 
@@ -52,7 +52,7 @@ public class GoodsDao {
 	
 	
 	
-	
+	//상품등록
 	public int insertGoods(Connection conn, Goods goods) throws Exception {
 		
 		int goodsNo = 0;
@@ -144,7 +144,7 @@ public class GoodsDao {
 		return map;
 	}
 	
-
+	//상품 목록 페이지
 	public List<Goods> selectGoodsListByPage(Connection conn, int rowPerPage, int beginRow) throws SQLException {
 			
 		List<Goods> list = new ArrayList<Goods>();
@@ -187,7 +187,7 @@ public class GoodsDao {
 	}
 	
 	
-	
+	//상품 마지막 페이지
 	public int lastPage(Connection conn) throws SQLException { 
 		int totalCount = 0;
 		String sql = "SELECT COUNT(*) From goods"; 

@@ -202,8 +202,8 @@ public class EmployeeDao {
 	
 	
 
-	// 사원 상세보기
-	// 그 테이블의 값들을 전부 가져와야함
+	// 사원 리스트
+	
 	public ArrayList<Employee> SelectEmployeeList(Connection conn, int rowPerPage, int beginRow) throws SQLException  {
 		ArrayList<Employee> list = new ArrayList<Employee>();
 			

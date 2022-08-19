@@ -107,6 +107,7 @@ public class OrdersService {
 		
 		try {
 			conn = new DBUtil().getConnection(); 
+			
 			conn.setAutoCommit(false); 
 			
 			
