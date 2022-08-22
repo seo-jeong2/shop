@@ -87,8 +87,40 @@ public class GoodsDao {
 		return goodsNo;
 	}
 	
+	//상품수정
+		public int updateGoods(Connection conn, Goods goods, int goodsNo) throws SQLException {
+			int row = 0;
+			String sql = "UPDATE goods SET goods_name = ? , goods_price = ? , sold_out = ? WHERE goods_no = ?";
+			PreparedStatement stmt = null;
+			System.out.println(goodsNo);
+			
+			try {
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, goods.getGoodsName());
+				stmt.setInt(2, goods.getGoodsPrice());
+				stmt.setString(3,  goods.getSoldOut());
+				stmt.setInt(4,  goodsNo);
+				
+				System.out.println("stmt" + stmt);
+				
+				row = stmt.executeUpdate();
+				//디버깅
+				System.out.println("row: " + row);
+				
+			
+			}finally {
+				
+				if(stmt!=null) {
+				
+					stmt.close();
+				}
+			}
+			return row;
+		}
+		
 	
-	// 상품 soldout 변경
+	
+		// 상품 soldout 변경
 		public int updateGoodsSoldOut(Connection conn, Goods goods) throws SQLException {
 			int row = 0;
 			String sql = "UPDATE goods SET sold_out = ? WHERE goods_no = ?";
@@ -107,11 +139,13 @@ public class GoodsDao {
 			}
 			return row;
 		}
+		
+		
 	
 	//상품 상세보기 사진
 	public Map<String,Object> selectGoodsAndImgOne(Connection conn, int goodsNo) throws SQLException{
 		Map<String,Object> map =new HashMap<String, Object>();
-		String sql = "SELECT g.*, gi.* FROM goods g INNER JOIN goods_img gi ON g.goods_no=gi.goods_no WHERE g.goods_no=?";
+		String sql =  "SELECT  g.goods_no goodsNo, g.goods_name goodsName, g.goods_price goodsPrice, g.update_date updateDate, g.create_date createDate, g.sold_out soldOut, i.filename fileName, i.origin_filename originalFilename, i.content_type contentType, i.create_date CreateDate from  goods g INNER JOIN goods_img i ON g.goods_no = i.goods_no WHERE g.goods_no=?";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
@@ -122,16 +156,17 @@ public class GoodsDao {
 			
 			while(rs.next()) {
 				
-				map.put("goodsNo", rs.getInt("g.goods_no"));
-				map.put("goodsName", rs.getString("g.goods_name"));
-				map.put("goodsPrice", rs.getInt("g.goods_price"));
-				map.put("goodsUpdateDate", rs.getString("g.update_date"));
-				map.put("goodsCreateDate", rs.getString("g.create_date"));
-				map.put("soldOut", rs.getString("g.sold_out"));
-				map.put("imgFileName", rs.getString("gi.filename"));
-				map.put("imgOriginFileName", rs.getString("gi.origin_filename"));
-				map.put("imgContentType", rs.getString("gi.content_type"));
-				map.put("imgCreateDate", rs.getString("gi.create_date"));
+				map.put("goodsNo", rs.getInt("goodsNo"));
+				map.put("goodsName", rs.getString("goodsName"));
+				map.put("goodsPrice", rs.getInt("goodsPrice"));
+				map.put("goodsUpdateDate", rs.getString("updateDate"));
+				map.put("goodsCreateDate", rs.getString("createDate"));
+				map.put("soldOut", rs.getString("soldOut"));
+				map.put("imgFileName", rs.getString("fileName"));
+				map.put("imgOriginFileName", rs.getString("originalFilename"));
+				map.put("imgContentType", rs.getString("contentType"));
+				map.put("imgCreateDate", rs.getString("createDate"));
+				
 			}
 		} finally {
 			if(rs != null) {
@@ -212,4 +247,6 @@ public class GoodsDao {
 		return totalCount;
 	}
 
+	
+	
 }

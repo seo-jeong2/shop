@@ -9,9 +9,9 @@
 <%@ page import = "java.io.File" %>
 
 <%
-//업로드 폴더 정적 지정
-// String dir = "c:\\upload"; 
-// 업로드 폴더 동적 지정
+	//업로드 폴더 정적 지정
+	// String dir = "c:\\upload"; 
+	// 업로드 폴더 동적 지정
 	String dir = request.getServletContext().getRealPath("/upload");
 	System.out.println(dir);
 

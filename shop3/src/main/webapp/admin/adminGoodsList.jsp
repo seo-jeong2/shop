@@ -54,7 +54,7 @@ if(list == null) {
 	</div>
 
 	<h1>상품 관리</h1>
-	<a href="<%=request.getContextPath()%>/admin/addGoodsForm.jsp"> 상품추가</a>
+	<a href="<%=request.getContextPath()%>/admin/addGoodsForm.jsp"><button>상품추가</button></a>
 	
 	<body>	
 		<table border="1">
@@ -74,55 +74,36 @@ if(list == null) {
 			%>
 					<tr>
 						<td><%=g.getGoodsNo()%></td>
-						<td><a href="<%=request.getContextPath()%>/admin/adminGoodsImgOne.jsp?goodsNo=<%=g.getGoodsNo() %>">
+						<td><a href="<%=request.getContextPath()%>/admin/adminGoodsOne.jsp?goodsNo=<%=g.getGoodsNo() %>">
 						<%=g.getGoodsName()%></a></td>
 						<td><%=g.getGoodsPrice()%></td>
 						<td><%=g.getCreateDate()%></td>
 						<td><%=g.getUpdateDate()%></td>
-						
-					<td>
-									<form action="<%=request.getContextPath()%>/admin/updateGoodsSoldOutAction.jsp" method="post">
-										<input type="hidden" name="goodsNo" value="<%=g.getGoodsNo()%>">
-										<select name="soldOut">
-											<%
-												if(g.getSoldOut().equals("N")) {
-											%>
-													<option value="Y">Y</option>
-													<option value="N" selected="selected">N</option>
-											<%
-												} else {
-											%>
-													<option value="Y" selected="selected">Y</option>
-													<option value="N">N</option>
-											<%
-												}
-											%>
-										</select>
-									<button type="submit" class="btn btn-dark">UPDATE</button>
-									</form>
-								</td>
+						<td><%=g.getSoldOut()%></td>
+					
 					</tr>
 			<%	
 				}
 			%>
+			
 		</tbody>
 		</table>
 		<div>
 			<%
 				if(currentPage > 1) {
 			%>	
-					<a href="<%=request.getContextPath()%>/admin/adminGoodsList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-dark">이전</a>
+					<a href="<%=request.getContextPath()%>/admin/adminGoodsList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-dark"><button>이전</button></a>
 			<%
 				}
 				if(currentPage < lastPage) {
 			%>	
-					<a href="<%=request.getContextPath()%>/admin/adminGoodsList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-dark">다음</a>
+					<a href="<%=request.getContextPath()%>/admin/adminGoodsList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-dark"><button>다음</button></a>
 			<%
 				}
 			%>
 		</div>
 		
-		<a href="<%=request.getContextPath()%>/index.jsp">처음으로</a>
+		<a href="<%=request.getContextPath()%>/index.jsp"><button>처음으로</button></a>
 	
 </body>
 </html>

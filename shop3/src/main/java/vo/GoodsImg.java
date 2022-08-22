@@ -2,6 +2,7 @@ package vo;
 
 public class GoodsImg {
 	private int goodsNo;
+	private String goodsName;
 	private String fileName;
 	private String originFileName;
 	private String contentType;
@@ -12,6 +13,13 @@ public class GoodsImg {
 	}
 	public void setGoodsNo(int goodsNo) {
 		this.goodsNo = goodsNo;
+	}
+	
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 	public String getFileName() {
 		return fileName;

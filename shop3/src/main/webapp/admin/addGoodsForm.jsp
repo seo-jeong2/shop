@@ -19,7 +19,10 @@
 			</tr>
 			<tr>
 				<td>품절 여부</td>
-				<td><input type="text" name="soldOut"></td>
+				<td>
+				<label>Y<input type="radio" name="soldOut" value="Y"></label>
+				<label>N<input type="radio" name="soldOut" value="N"></label>
+				<td>
 			</tr>
 			<tr>
 				<td>이미지 파일</td>

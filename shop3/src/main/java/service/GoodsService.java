@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.*;
+
 import java.util.*;
 import repository.*;
 import vo.*;
@@ -9,12 +10,66 @@ import vo.*;
 // 서비스가 하는 일: 트랜잭션 처리 ★★★★★★★ + action, Dao가 해서는 안되는 일 처리
 public class GoodsService {
 
-
-	private GoodsImgDao goodsImgDao;
-	private GoodsDao goodsDao;	
-		
-
+	private GoodsImgDao goodsImgDao ;
+	private GoodsDao goodsDao;
 	
+		
+	//상품 수정 (이미지포함)
+	public int modifyGoods(Goods goods, GoodsImg goodsImg, int goodsNo) throws Exception{
+		Connection conn = null;
+		int row = 0;
+		System.out.println(goodsNo);
+		
+		try {
+			conn = new DBUtil().getConnection();
+			conn.setAutoCommit(false); // executeUpdate() 실행 시 자동 커밋을 막음
+			
+			GoodsDao goodsDao = new GoodsDao();
+			GoodsImgDao goodsImgDao= new GoodsImgDao();
+			row = goodsDao.updateGoods(conn, goods, goodsNo);
+			
+			if(row ==0) {
+			throw new Exception();
+			}
+			
+			System.out.println(goodsNo + ": goodsNo");
+
+			
+			if(row != 0) { // 쿼리문이 정상적으로 적용되었는지 확인 후 아닐 시 예외처리
+			System.out.println("상품수정 성공");
+			goodsImg.setGoodsNo(goodsNo);
+			
+			if(goodsImgDao.updateGoodsImg(conn, goodsNo, goodsImg) ==0) { //상품이미지 수정
+				throw new Exception();
+			}
+				
+			
+		} 
+			conn.commit();
+			
+		}
+			catch (Exception e) {
+			e.printStackTrace(); // console에 예외메세지 출력
+			try {
+				conn.rollback(); // 예외를 던지지말고 감싸야함
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("GoodsService 성공");
+		return goodsNo;
+	}
+		
+	
+
+
+	//상품추가
 	public int addGoods(Goods goods, GoodsImg goodsImg) {
 		int goodsNo = 0;
 		Connection conn = null;
@@ -64,7 +119,7 @@ public class GoodsService {
 		return goodsNo;
 	}
 	
-	
+	//이미지 상세보기
 	public Map<String, Object> getGoodsAndImgOne(int goodsNo) {
 		Map<String,Object> map = null;
 		
@@ -76,7 +131,8 @@ public class GoodsService {
 			GoodsDao goodsDao = new GoodsDao(); 	
 			map = goodsDao.selectGoodsAndImgOne(conn, goodsNo);
 			
-			System.out.print(map +" : 상품 상세보기");
+			
+			System.out.print("상품 상세보기 : " + map);
 			conn.commit();
 		
 		
@@ -96,11 +152,13 @@ public class GoodsService {
 	}
 	
 	
+	
 	// 상품 품절 변경
 		public boolean modifyGoodsSoldOut(Goods goods) {
 			Connection conn = null;
 			boolean result = false;
 			int row = 0;
+			
 			
 			try {
 				conn = new DBUtil().getConnection();
@@ -116,9 +174,9 @@ public class GoodsService {
 				}		
 				conn.commit();		
 			} catch (Exception e) {
-				e.printStackTrace(); // console에 예외메세지 출력
+				e.printStackTrace(); 
 				try {
-					conn.rollback(); // 예외를 던지지말고 감싸야함
+					conn.rollback(); 
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -133,7 +191,7 @@ public class GoodsService {
 		}
 	
 		
-		//마지막 페이징
+	//마지막 페이지
 		public int getLastPage(int rowPerPage) {
 		
 		Connection conn = null;
@@ -174,7 +232,7 @@ public class GoodsService {
 		
 	}
 
-
+	//상품목록
 	public List<Goods> getGoodsListByPage(int rowPerPage, int currentPage) {
 
 		Connection conn = null;

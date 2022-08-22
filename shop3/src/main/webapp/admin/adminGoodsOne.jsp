@@ -25,27 +25,30 @@
 <table border="1">
 	<thead>
 	<tr> 
-		<td>번호</td>
-		<td>이미지</td>
-		<td>이름</td>
-		<td>가격</td>
-		<td>등록일</td>
-		<td>수정일</td>
-		<td>품절여부</td>
+		<th>번호</th>
+		<th>이미지</th>
+		<th>이름</th>
+		<th>가격</th>
+		<th>등록일</th>
+		<th>수정일</th>
+		<th>품절여부</th>
+		<th>상품수정</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
 		<td><%=map.get("goodsNo")%></td>
-		<td><img src="<%=request.getContextPath()%>/upload/<%=map.get("imgFileName")%>"></td>
+		<td><img src="<%=request.getContextPath()%>/upload/<%=map.get("imgFileName")%>" width="280px" height="200px">
 		<td><%=map.get("goodsName")%></td>
 		<td><%=map.get("goodsPrice")%></td>
 		<td><%=map.get("imgCreateDate")%></td>
 		<td><%=map.get("goodsUpdateDate")%></td>
 		<td><%=map.get("soldOut")%></td>
+		<td><a href="<%=request.getContextPath()%>/admin/updateGoodsForm.jsp?goodsNo=<%=map.get("goodsNo")%>"><button>수정</button></a></td>
 	</tr>
 	</tbody>	
 </table>
+	<a href="<%=request.getContextPath()%>/admin/adminGoodsList.jsp"><button>뒤로가기</button></a>
 
 	
 </body>
