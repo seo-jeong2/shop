@@ -64,8 +64,7 @@ public class GoodsDao {
 		
 		stmt.setString(1, goods.getGoodsName());
 		stmt.setInt(2, goods.getGoodsPrice());
-		stmt.setString(3, goods.getSoldOut());
-		
+
 		stmt.executeUpdate(); // insert 
 		ResultSet rs = stmt.getGeneratedKeys(); // return 값 
 		

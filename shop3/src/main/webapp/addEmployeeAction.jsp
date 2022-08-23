@@ -28,7 +28,7 @@ System.out.print(employeeName);
    insertService.addEmpolyee(paramEmpolyee);
 
 
-response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+response.sendRedirect(request.getContextPath()+"/employeeList.jsp");
 
 
 

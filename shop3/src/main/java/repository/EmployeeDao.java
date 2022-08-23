@@ -84,6 +84,7 @@ public class EmployeeDao {
 		return loginEmployee;
 	}
 
+	//관리자등록
 	public int insertEmployee(Connection conn, Employee employee) throws Exception {
 		int row = 0;
 

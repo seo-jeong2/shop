@@ -38,7 +38,7 @@
 	<tbody>
 	<tr>
 		<td><%=map.get("goodsNo")%></td>
-		<td><img src="<%=request.getContextPath()%>/upload/<%=map.get("imgFileName")%>" width="280px" height="200px">
+		<td><img src="<%=request.getContextPath()%>/upload/<%=map.get("imgFileName")%>" width="300px" height="220px">
 		<td><%=map.get("goodsName")%></td>
 		<td><%=map.get("goodsPrice")%></td>
 		<td><%=map.get("imgCreateDate")%></td>

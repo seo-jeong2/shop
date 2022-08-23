@@ -40,7 +40,7 @@
 	         f.delete();
 	      }
 	      String errorMsg = URLEncoder.encode("이미지파일만 업로드 가능", "utf-8");
-	      response.sendRedirect(request.getContextPath()+"/addGoodsFrom.jsp?errorMsg="+errorMsg);
+	      response.sendRedirect(request.getContextPath()+"/addGoodsForm.jsp?errorMsg="+errorMsg);
 	      return;
 	   }
 	

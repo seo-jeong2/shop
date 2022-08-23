@@ -83,7 +83,8 @@ public class EmployeeService {
 		return employee;
 
 	}
-
+	
+	//관리자 등록
 	public boolean addEmpolyee(Employee paramEmpolyee) {
 		Connection conn = null;
 
@@ -96,7 +97,7 @@ public class EmployeeService {
 
 			conn.commit();
 		} catch (Exception e) {
-			e.printStackTrace(); // console에 예외메세지 출력
+			e.printStackTrace(); 
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {

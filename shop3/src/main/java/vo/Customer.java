@@ -8,6 +8,8 @@ public class Customer {
 	private String customerTelephone;
 	private String updateDate;
 	private String createDate;
+	private String Active;
+	
 	public String getCustomerId() {
 		return customerId;
 	}
@@ -50,14 +52,14 @@ public class Customer {
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", customerPass=" + customerPass + ", customerName="
-				+ customerName + ", customerAddress=" + customerAddress + ", customerTelephone=" + customerTelephone
-				+ ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
+	public String getActive() {
+		return Active;
 	}
+	public void setActive(String active) {
+		Active = active;
+	}
+	
+	
 	
 	
 	

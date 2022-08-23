@@ -36,7 +36,7 @@ public class GoodsImgDao {
 			}
 		}
 		
-		System.out.println(row + "<-- row - insertGoodsImg");
+		System.out.println(row + ":  이미지등록");
 		return row;
 	}
 

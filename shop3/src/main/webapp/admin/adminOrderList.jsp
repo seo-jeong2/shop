@@ -95,19 +95,19 @@
 			<%
 				if(currentPage > 1) {
 			%>	
-					<a href="<%=request.getContextPath()%>/admin/adminOrderList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-dark">이전</a>
+					<a href="<%=request.getContextPath()%>/admin/adminOrderList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-dark"><button>이전</button></a>
 			<%
 			
 				}
 				if(currentPage < lastPage) {
 			%>	
-					<a href="<%=request.getContextPath()%>/admin/adminOrderList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-dark">다음</a>
+					<a href="<%=request.getContextPath()%>/admin/adminOrderList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-dark"><button>다음</button></a>
 			<%
 				}
 			%>
 		</div>
 		
-		<a href="<%=request.getContextPath()%>/index.jsp">처음으로</a>
+		<a href="<%=request.getContextPath()%>/index.jsp"><button>처음으로</button></a>
 				
 </body>
 </html>
